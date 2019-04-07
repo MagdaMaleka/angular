@@ -1,0 +1,45 @@
+<h1>Witaj użytkowniku, {{name}}</h1>
+
+<button (click)="deleteUser()" [disabled]="isDisabled()" class="uk-button uk-button-primary">Wyloguj</button>
+<div>
+  <input [(ngModel)]="name2" class="uk-input uk-width-1-2" type="text">
+</div>
+
+<p *ngIf="showP">{{name2}}</p>
+
+<hr>
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="uk-width-1-3">
+  <div class="uk-margin">
+    <label for="firstName">Imię</label>
+    <input class="uk-input" ngModel name="firstName" id="firstName" type="text" required>
+  </div>
+
+  <div class="uk-margin">
+    <label for="lastName">Nazwisko</label>
+    <input class="uk-input" ngModel name="lastName" id="lastName" type="text" required>
+  </div>
+
+  <div class="uk-margin">
+    <label for="age">Wiek</label>
+    <input class="uk-input" ngModel name="age" id="age" type="text" required>
+  </div>
+
+  <div class="uk-margin">
+    <label for="city">Miasto</label>
+    <input class="uk-input" ngModel name="city" id="city" type="text" required>
+  </div>
+  <input class="uk-button uk-button-primary" value="Zapisz" type="submit">
+</form>
+
+<hr>
+
+<div [ngClass]="{'uk-card-primary': showPrimary(user.age)}" *ngFor="let user of userArray" class="uk-card uk-card-default uk-width-1-2 uk-margin">
+  <div class="uk-card-header">
+    <h3 class="uk-card-title">{{user.firstName + ' ' + user.lastName}}</h3>
+  </div>
+  <div class="uk-card-body">
+    <p>Wiek: {{user.age}}</p>
+    <p>Miasto: {{user.city}}</p>
+  </div>
+</div>
